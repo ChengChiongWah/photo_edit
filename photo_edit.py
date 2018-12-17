@@ -58,9 +58,13 @@ import win32com.client
 #                     # print(line.split("	", 2)[0], line.split("	", 2)[1], line.split("	", 2)[2])
 #                         shutil.copy(os.path.join(source_dir, f), os.path.join(target_dir, line.split("	", 2)[2][1:19]+"."+name_extension))
 
-# 　对处理后的数据检测身份证位数是否为１８位
-source_dir = r'C:\Users\wah\Desktop\18级大头照 - 副本\180928\Result'
+# 　对处理后的数据进行检测
+source_dir = r'C:\Users\wah\Desktop\18药物制剂1班\18药物制剂1班-王莎（79人）'
 for root, dirs, files in os.walk(source_dir):
     for f in files:
-        if len(f.split(".",1)[0]) != 18:
+        if " " in f:      # 检测是否有空格
+            print(f, "有空格")
+        if len(f.rsplit(".",1)[0]) != 18:  #从右边第一个.符号起切片，看左边的字符是否18位。
             print(f, len(f.split(".",1)[0]))
+    for f in files:
+        print(f.rsplit(".", 1)[0], len(f.rsplit(".", 1)[0]))
